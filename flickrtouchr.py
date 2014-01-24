@@ -285,7 +285,7 @@ if __name__ == '__main__':
             dom = xml.dom.minidom.parse(response)
 
             # Get the total
-            pages = int(dom.getElementsByTagName("photo")[0].parentNode.getAttribute("pages"))
+            pages = int([node for node in dom.getElementsByTagName("rsp")[0].childNodes if node.nodeType == node.ELEMENT_NODE][0].getAttribute("pages"))
 
             # Grab the photos
             for photo in dom.getElementsByTagName("photo"):
